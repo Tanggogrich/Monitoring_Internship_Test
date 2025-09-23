@@ -2,7 +2,6 @@ package monitoring;
 
 import com.grafana.foundation.timeseries.PanelBuilder;
 
-
 import static monitoring.Common.datasourceRef;
 import static monitoring.Common.prometheusQuery;
 import static monitoring.Common.defaultTimeSeries;

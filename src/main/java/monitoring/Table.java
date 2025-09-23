@@ -2,11 +2,9 @@ package monitoring;
 
 import com.grafana.foundation.table.PanelBuilder;
 
-import static monitoring.Common.datasourceRef;
-import static monitoring.Common.prometheusQuery;
+import static monitoring.Common.*;
 
 public class Table {
-
     static PanelBuilder avgOverTimeCPUUsageAsTable() {
         return new PanelBuilder()
                 .title("Average Over Time CPU Usage")
@@ -14,7 +12,7 @@ public class Table {
                 .datasource(datasourceRef())
                 .unit("short")
                 .withTarget(
-                        prometheusQuery(
+                        tablePrometheusQuery(
                                 "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
                                 "{{job}} configured"
                         )

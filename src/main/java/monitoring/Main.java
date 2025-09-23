@@ -3,6 +3,7 @@ package monitoring;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.grafana.foundation.dashboard.*;
+
 import static monitoring.Common.datasourceRef;
 import static com.grafana.foundation.common.Constants.TimeZoneBrowser;
 import static monitoring.Table.avgOverTimeCPUUsageAsTable;
@@ -19,23 +20,25 @@ public class Main {
                 .tags(List.of("generated", "grafana-foundation-sdk", "monitoring-agent"))
                 .editable()
                 .tooltip(DashboardCursorSync.OFF)
-                .refresh("5s")
+                .refresh("30s")
                 .time(new DashboardDashboardTimeBuilder()
-                        .from("now-10m")
+                        .from("now-30m")
                         .to("now"))
                 .timezone(TimeZoneBrowser)
                 .timepicker(new TimePickerBuilder()
-                        .refreshIntervals(List.of("1s", "2s", "5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d")))
+                        .refreshIntervals(List.of("5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d")))
                 .withVariable(new DatasourceVariableBuilder("prometheus_datasource")
                         .label("Data source")
+                        // It tells Grafana that this variable should show a list of all available Prometheus data sources
                         .type("prometheus")
+                        // Filter the list of available Prometheus data sources by removing the irrelevant ones.
                         .regex("(?!grafanacloud-usage|grafanacloud-ml-metrics).+")
                         .multi(false))
                 .withVariable(jobQueryBuilder())
                 .withVariable(instanceQueryBuilder())
                 .withRow(new RowBuilder("CPU Usage as TimeSeries"))
                 .withPanel(avgOverTimeCPUUsageAsTimeSeries())
-                .withRow(new  RowBuilder("CPU Usage as Table"))
+                .withRow(new RowBuilder("CPU Usage as Table"))
                 .withPanel(avgOverTimeCPUUsageAsTable())
                 .build();
 
@@ -62,6 +65,7 @@ public class Main {
 
         return new QueryVariableBuilder("job")
                 .label("job")
+                // This query tells Prometheus to return all unique values for the job label from the cpu_usage metric
                 .query(StringOrMap.createString("label_values(cpu_usage, job)"))
                 .datasource(datasourceRef())
                 .current(option)
@@ -79,6 +83,8 @@ public class Main {
 
         return new QueryVariableBuilder("instance")
                 .label("instance")
+                // This query uses the value of the job variable to filter the results.
+                // It means the "instance" dropdown will only show instances that are associated with the currently selected job.
                 .query(StringOrMap.createString("label_values(cpu_usage{job=~\"$job\"}, instance)"))
                 .datasource(datasourceRef())
                 .current(option)
