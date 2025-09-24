@@ -1,6 +1,6 @@
 {
-  "uid" : "monitoring-agent",
-  "title" : "Grafana monitoring dashboard",
+  "uid" : "grafana-monitoring-agent",
+  "title" : "Grafana monitoring agent dashboard",
   "tags" : [ "generated", "grafana-foundation-sdk", "monitoring-agent" ],
   "timezone" : "browser",
   "editable" : true,
@@ -19,7 +19,7 @@
   "panels" : [ {
     "type" : "row",
     "collapsed" : false,
-    "title" : "CPU Usage as TimeSeries",
+    "title" : "CPU Usage",
     "gridPos" : {
       "h" : 1,
       "w" : 24,
@@ -71,7 +71,7 @@
             "mode" : "off"
           },
           "lineWidth" : 1.0,
-          "fillOpacity" : 0.0,
+          "fillOpacity" : 15.0,
           "showPoints" : "auto",
           "pointSize" : 5.0,
           "spanNulls" : true,
@@ -80,18 +80,6 @@
       },
       "overrides" : [ ]
     }
-  }, {
-    "type" : "row",
-    "collapsed" : false,
-    "title" : "CPU Usage as Table",
-    "gridPos" : {
-      "h" : 1,
-      "w" : 24,
-      "x" : 0,
-      "y" : 1
-    },
-    "id" : 0,
-    "panels" : [ ]
   }, {
     "type" : "table",
     "targets" : [ {
@@ -113,12 +101,65 @@
     "gridPos" : {
       "h" : 9,
       "w" : 12,
-      "x" : 0,
-      "y" : 2
+      "x" : 12,
+      "y" : 1
     },
     "fieldConfig" : {
       "defaults" : {
         "unit" : "short"
+      },
+      "overrides" : [ ]
+    }
+  }, {
+    "type" : "timeseries",
+    "targets" : [ {
+      "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+      "legendFormat" : "{{instance}} {{job}}",
+      "intervalFactor" : 2.0,
+      "refId" : "{{job}} configured"
+    } ],
+    "title" : "Average Over Time CPU Usage",
+    "description" : "Average Over Time CPU Usage",
+    "transparent" : false,
+    "datasource" : {
+      "type" : "prometheus",
+      "uid" : "$prometheus_datasource"
+    },
+    "gridPos" : {
+      "h" : 7,
+      "w" : 12,
+      "x" : 0,
+      "y" : 10
+    },
+    "options" : {
+      "legend" : {
+        "displayMode" : "table",
+        "placement" : "bottom",
+        "showLegend" : true,
+        "calcs" : [ "min", "max", "mean", "last" ]
+      },
+      "tooltip" : {
+        "mode" : "single",
+        "sort" : "none"
+      }
+    },
+    "fieldConfig" : {
+      "defaults" : {
+        "unit" : "short",
+        "custom" : {
+          "drawStyle" : "line",
+          "gradientMode" : "none",
+          "thresholdsStyle" : {
+            "mode" : "off"
+          },
+          "lineWidth" : 1.0,
+          "fillOpacity" : 15.0,
+          "showPoints" : "never",
+          "pointSize" : 5.0,
+          "axisGridShow" : true,
+          "spanNulls" : true,
+          "axisBorderShow" : false
+        }
       },
       "overrides" : [ ]
     }

@@ -7,6 +7,7 @@ import com.grafana.foundation.dashboard.*;
 import static monitoring.Common.datasourceRef;
 import static com.grafana.foundation.common.Constants.TimeZoneBrowser;
 import static monitoring.Table.avgOverTimeCPUUsageAsTable;
+import static monitoring.TimeSeries.avgOverTimeCPUUsageAsModifiedTimeSeries;
 import static monitoring.TimeSeries.avgOverTimeCPUUsageAsTimeSeries;
 
 import java.io.FileWriter;
@@ -15,8 +16,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Dashboard dashboard = new DashboardBuilder("Grafana monitoring dashboard")
-                .uid("monitoring-agent")
+        Dashboard dashboard = new DashboardBuilder("Grafana monitoring agent dashboard")
+                .uid("grafana-monitoring-agent")
                 .tags(List.of("generated", "grafana-foundation-sdk", "monitoring-agent"))
                 .editable()
                 .tooltip(DashboardCursorSync.OFF)
@@ -36,10 +37,10 @@ public class Main {
                         .multi(false))
                 .withVariable(jobQueryBuilder())
                 .withVariable(instanceQueryBuilder())
-                .withRow(new RowBuilder("CPU Usage as TimeSeries"))
+                .withRow(new RowBuilder("CPU Usage"))
                 .withPanel(avgOverTimeCPUUsageAsTimeSeries())
-                .withRow(new RowBuilder("CPU Usage as Table"))
                 .withPanel(avgOverTimeCPUUsageAsTable())
+                .withPanel(avgOverTimeCPUUsageAsModifiedTimeSeries())
                 .build();
 
 
