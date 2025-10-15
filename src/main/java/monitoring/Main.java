@@ -23,7 +23,7 @@ public class Main {
                 .tooltip(DashboardCursorSync.OFF)
                 .refresh("30s")
                 .time(new DashboardDashboardTimeBuilder()
-                        .from("now-30m")
+                        .from("now-60m")
                         .to("now"))
                 .timezone(TimeZoneBrowser)
                 .timepicker(new TimePickerBuilder()

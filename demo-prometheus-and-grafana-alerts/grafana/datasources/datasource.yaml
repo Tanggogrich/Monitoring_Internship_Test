@@ -43,3 +43,11 @@ datasources:
       sslmode: 'disable' 
       postgresVersion: 1500
       timescaledb: false
+
+providers:
+  - name: dashboards
+    type: file
+    updateIntervalSeconds: 60
+    disableDeletion: false
+    options:
+      path: C:\Users\vakht\IdeaProjects\JetBrains\Monitoring_Internship_Test\src\main\resources
