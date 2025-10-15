@@ -47,6 +47,7 @@ datasources:
 providers:
   - name: dashboards
     type: file
+    folder: 'Git Provisioned Dashboards'
     updateIntervalSeconds: 60
     disableDeletion: false
     options:
