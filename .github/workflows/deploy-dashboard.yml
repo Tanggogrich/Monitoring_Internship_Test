@@ -42,6 +42,8 @@ jobs:
         if [ ! -f ./src/main/resources/dashboard.json ]; then
           echo "ERROR: Dashboard JSON was not generated at ./src/main/resources/dashboard.json"
           exit 1
+        else
+          echo ./src/main/resources/dashboard.json
         fi
 
     - name: Deploy Dashboard with grafanactl
