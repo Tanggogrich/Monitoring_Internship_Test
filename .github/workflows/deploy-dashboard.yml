@@ -50,7 +50,7 @@ jobs:
         GRAFANA_STACK_ID: ${{ vars.GRAFANA_STACK_ID }}
         GRAFANA_TOKEN: ${{ vars.GRAFANA_TOKEN }}
       run: |
-        if [ -f dashboard.json ]; then
+        if [ -f ./src/main/resources/dashboard.json ]; then
           echo "dashboard.json exists, deploying grafana dashboard."
           grafanactl resources push dashboard --path ./src/main/resources/dashboard.json
         else
