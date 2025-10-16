@@ -1,230 +1,237 @@
 {
-  "uid" : "grafana-monitoring-agent",
-  "title" : "Grafana monitoring agent dashboard",
-  "tags" : [ "generated", "grafana-foundation-sdk", "monitoring-agent" ],
-  "timezone" : "browser",
-  "editable" : true,
-  "graphTooltip" : 0,
-  "time" : {
-    "from" : "now-30m",
-    "to" : "now"
+  "APIVersion" : "dashboard.grafana.app/v1beta1",
+  "kind" : "Dashboards",
+  "metadata" : {
+    "name" : "my-dashboard"
   },
-  "timepicker" : {
-    "hidden" : false,
-    "refresh_intervals" : [ "5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d" ]
-  },
-  "fiscalYearStartMonth" : 0,
-  "refresh" : "30s",
-  "schemaVersion" : 41,
-  "panels" : [ {
-    "type" : "row",
-    "collapsed" : false,
-    "title" : "CPU Usage",
-    "gridPos" : {
-      "h" : 1,
-      "w" : 24,
-      "x" : 0,
-      "y" : 0
+  "spec" : {
+    "uid" : "grafana-monitoring-agent",
+    "title" : "Grafana monitoring agent dashboard",
+    "tags" : [ "generated", "grafana-foundation-sdk", "monitoring-agent" ],
+    "timezone" : "browser",
+    "editable" : true,
+    "graphTooltip" : 0,
+    "time" : {
+      "from" : "now-30m",
+      "to" : "now"
     },
-    "id" : 0,
-    "panels" : [ ]
-  }, {
-    "type" : "timeseries",
-    "targets" : [ {
-      "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
-      "legendFormat" : "{{instance}} {{job}}",
-      "intervalFactor" : 2.0,
-      "refId" : "{{job}} configured"
-    } ],
-    "title" : "Average Over Time CPU Usage",
-    "description" : "Average Over Time CPU Usage",
-    "transparent" : false,
-    "datasource" : {
-      "type" : "prometheus",
-      "uid" : "$prometheus_datasource"
+    "timepicker" : {
+      "hidden" : false,
+      "refresh_intervals" : [ "5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d" ]
     },
-    "gridPos" : {
-      "h" : 7,
-      "w" : 12,
-      "x" : 0,
-      "y" : 1
-    },
-    "options" : {
-      "legend" : {
-        "displayMode" : "list",
-        "placement" : "bottom",
-        "showLegend" : true,
-        "calcs" : [ ]
+    "fiscalYearStartMonth" : 0,
+    "refresh" : "30s",
+    "schemaVersion" : 41,
+    "panels" : [ {
+      "type" : "row",
+      "collapsed" : false,
+      "title" : "CPU Usage",
+      "gridPos" : {
+        "h" : 1,
+        "w" : 24,
+        "x" : 0,
+        "y" : 0
       },
-      "tooltip" : {
-        "mode" : "single",
-        "sort" : "none"
-      }
-    },
-    "fieldConfig" : {
-      "defaults" : {
-        "unit" : "short",
-        "custom" : {
-          "drawStyle" : "line",
-          "gradientMode" : "none",
-          "thresholdsStyle" : {
-            "mode" : "off"
-          },
-          "lineWidth" : 1.0,
-          "fillOpacity" : 15.0,
-          "showPoints" : "auto",
-          "pointSize" : 5.0,
-          "spanNulls" : true,
-          "axisBorderShow" : false
-        }
-      },
-      "overrides" : [ ]
-    }
-  }, {
-    "type" : "table",
-    "targets" : [ {
-      "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
-      "instant" : false,
-      "range" : true,
-      "format" : "table",
-      "legendFormat" : "{{instance}} {{job}}",
-      "intervalFactor" : 2.0,
-      "refId" : "{{job}} configured"
-    } ],
-    "title" : "Average Over Time CPU Usage",
-    "description" : "Average Over Time CPU Usage",
-    "transparent" : false,
-    "datasource" : {
-      "type" : "prometheus",
-      "uid" : "$prometheus_datasource"
-    },
-    "gridPos" : {
-      "h" : 9,
-      "w" : 12,
-      "x" : 12,
-      "y" : 1
-    },
-    "fieldConfig" : {
-      "defaults" : {
-        "unit" : "short"
-      },
-      "overrides" : [ ]
-    }
-  }, {
-    "type" : "timeseries",
-    "targets" : [ {
-      "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
-      "legendFormat" : "{{instance}} {{job}}",
-      "intervalFactor" : 2.0,
-      "refId" : "{{job}} configured"
-    } ],
-    "title" : "Average Over Time CPU Usage",
-    "description" : "Average Over Time CPU Usage",
-    "transparent" : false,
-    "datasource" : {
-      "type" : "prometheus",
-      "uid" : "$prometheus_datasource"
-    },
-    "gridPos" : {
-      "h" : 7,
-      "w" : 12,
-      "x" : 0,
-      "y" : 10
-    },
-    "options" : {
-      "legend" : {
-        "displayMode" : "table",
-        "placement" : "bottom",
-        "showLegend" : true,
-        "calcs" : [ "min", "max", "mean", "last" ]
-      },
-      "tooltip" : {
-        "mode" : "single",
-        "sort" : "none"
-      }
-    },
-    "fieldConfig" : {
-      "defaults" : {
-        "unit" : "short",
-        "custom" : {
-          "drawStyle" : "line",
-          "gradientMode" : "none",
-          "thresholdsStyle" : {
-            "mode" : "off"
-          },
-          "lineWidth" : 1.0,
-          "fillOpacity" : 15.0,
-          "showPoints" : "never",
-          "pointSize" : 5.0,
-          "axisGridShow" : true,
-          "spanNulls" : true,
-          "axisBorderShow" : false
-        }
-      },
-      "overrides" : [ ]
-    }
-  } ],
-  "templating" : {
-    "list" : [ {
-      "type" : "datasource",
-      "name" : "prometheus_datasource",
-      "label" : "Data source",
-      "skipUrlSync" : false,
-      "query" : "prometheus",
-      "multi" : false,
-      "allowCustomValue" : true,
-      "includeAll" : false,
-      "regex" : "(?!grafanacloud-usage|grafanacloud-ml-metrics).+",
-      "auto" : false,
-      "auto_min" : "10s",
-      "auto_count" : 30
+      "id" : 0,
+      "panels" : [ ]
     }, {
-      "type" : "query",
-      "name" : "job",
-      "label" : "job",
-      "skipUrlSync" : false,
-      "query" : "label_values(cpu_usage, job)",
+      "type" : "timeseries",
+      "targets" : [ {
+        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+        "legendFormat" : "{{instance}} {{job}}",
+        "intervalFactor" : 2.0,
+        "refId" : "{{job}} configured"
+      } ],
+      "title" : "Average Over Time CPU Usage",
+      "description" : "Average Over Time CPU Usage",
+      "transparent" : false,
       "datasource" : {
         "type" : "prometheus",
         "uid" : "$prometheus_datasource"
       },
-      "current" : {
-        "selected" : true,
-        "text" : [ "All" ],
-        "value" : [ "$__all" ]
+      "gridPos" : {
+        "h" : 7,
+        "w" : 12,
+        "x" : 0,
+        "y" : 1
       },
-      "multi" : true,
-      "allowCustomValue" : true,
-      "refresh" : 2,
-      "sort" : 1,
-      "includeAll" : true,
-      "auto" : false,
-      "auto_min" : "10s",
-      "auto_count" : 30
+      "options" : {
+        "legend" : {
+          "displayMode" : "list",
+          "placement" : "bottom",
+          "showLegend" : true,
+          "calcs" : [ ]
+        },
+        "tooltip" : {
+          "mode" : "single",
+          "sort" : "none"
+        }
+      },
+      "fieldConfig" : {
+        "defaults" : {
+          "unit" : "short",
+          "custom" : {
+            "drawStyle" : "line",
+            "gradientMode" : "none",
+            "thresholdsStyle" : {
+              "mode" : "off"
+            },
+            "lineWidth" : 1.0,
+            "fillOpacity" : 15.0,
+            "showPoints" : "auto",
+            "pointSize" : 5.0,
+            "spanNulls" : true,
+            "axisBorderShow" : false
+          }
+        },
+        "overrides" : [ ]
+      }
     }, {
-      "type" : "query",
-      "name" : "instance",
-      "label" : "instance",
-      "skipUrlSync" : false,
-      "query" : "label_values(cpu_usage{job=~\"$job\"}, instance)",
+      "type" : "table",
+      "targets" : [ {
+        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+        "instant" : false,
+        "range" : true,
+        "format" : "table",
+        "legendFormat" : "{{instance}} {{job}}",
+        "intervalFactor" : 2.0,
+        "refId" : "{{job}} configured"
+      } ],
+      "title" : "Average Over Time CPU Usage",
+      "description" : "Average Over Time CPU Usage",
+      "transparent" : false,
       "datasource" : {
         "type" : "prometheus",
         "uid" : "$prometheus_datasource"
       },
-      "current" : {
-        "selected" : true,
-        "text" : [ "All" ],
-        "value" : [ "$__all" ]
+      "gridPos" : {
+        "h" : 9,
+        "w" : 12,
+        "x" : 12,
+        "y" : 1
       },
-      "multi" : true,
-      "allowCustomValue" : true,
-      "refresh" : 2,
-      "sort" : 1,
-      "includeAll" : true,
-      "auto" : false,
-      "auto_min" : "10s",
-      "auto_count" : 30
-    } ]
-  },
-  "annotations" : { }
+      "fieldConfig" : {
+        "defaults" : {
+          "unit" : "short"
+        },
+        "overrides" : [ ]
+      }
+    }, {
+      "type" : "timeseries",
+      "targets" : [ {
+        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+        "legendFormat" : "{{instance}} {{job}}",
+        "intervalFactor" : 2.0,
+        "refId" : "{{job}} configured"
+      } ],
+      "title" : "Average Over Time CPU Usage",
+      "description" : "Average Over Time CPU Usage",
+      "transparent" : false,
+      "datasource" : {
+        "type" : "prometheus",
+        "uid" : "$prometheus_datasource"
+      },
+      "gridPos" : {
+        "h" : 7,
+        "w" : 12,
+        "x" : 0,
+        "y" : 10
+      },
+      "options" : {
+        "legend" : {
+          "displayMode" : "table",
+          "placement" : "bottom",
+          "showLegend" : true,
+          "calcs" : [ "min", "max", "mean", "last" ]
+        },
+        "tooltip" : {
+          "mode" : "single",
+          "sort" : "none"
+        }
+      },
+      "fieldConfig" : {
+        "defaults" : {
+          "unit" : "short",
+          "custom" : {
+            "drawStyle" : "line",
+            "gradientMode" : "none",
+            "thresholdsStyle" : {
+              "mode" : "off"
+            },
+            "lineWidth" : 1.0,
+            "fillOpacity" : 15.0,
+            "showPoints" : "never",
+            "pointSize" : 5.0,
+            "axisGridShow" : true,
+            "spanNulls" : true,
+            "axisBorderShow" : false
+          }
+        },
+        "overrides" : [ ]
+      }
+    } ],
+    "templating" : {
+      "list" : [ {
+        "type" : "datasource",
+        "name" : "prometheus_datasource",
+        "label" : "Data source",
+        "skipUrlSync" : false,
+        "query" : "prometheus",
+        "multi" : false,
+        "allowCustomValue" : true,
+        "includeAll" : false,
+        "regex" : "(?!grafanacloud-usage|grafanacloud-ml-metrics).+",
+        "auto" : false,
+        "auto_min" : "10s",
+        "auto_count" : 30
+      }, {
+        "type" : "query",
+        "name" : "job",
+        "label" : "job",
+        "skipUrlSync" : false,
+        "query" : "label_values(cpu_usage, job)",
+        "datasource" : {
+          "type" : "prometheus",
+          "uid" : "$prometheus_datasource"
+        },
+        "current" : {
+          "selected" : true,
+          "text" : [ "All" ],
+          "value" : [ "$__all" ]
+        },
+        "multi" : true,
+        "allowCustomValue" : true,
+        "refresh" : 2,
+        "sort" : 1,
+        "includeAll" : true,
+        "auto" : false,
+        "auto_min" : "10s",
+        "auto_count" : 30
+      }, {
+        "type" : "query",
+        "name" : "instance",
+        "label" : "instance",
+        "skipUrlSync" : false,
+        "query" : "label_values(cpu_usage{job=~\"$job\"}, instance)",
+        "datasource" : {
+          "type" : "prometheus",
+          "uid" : "$prometheus_datasource"
+        },
+        "current" : {
+          "selected" : true,
+          "text" : [ "All" ],
+          "value" : [ "$__all" ]
+        },
+        "multi" : true,
+        "allowCustomValue" : true,
+        "refresh" : 2,
+        "sort" : 1,
+        "includeAll" : true,
+        "auto" : false,
+        "auto_min" : "10s",
+        "auto_count" : 30
+      } ]
+    },
+    "annotations" : { }
+  }
 }
