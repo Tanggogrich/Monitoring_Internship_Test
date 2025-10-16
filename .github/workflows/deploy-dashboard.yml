@@ -52,11 +52,12 @@ jobs:
         DASHBOARD_PATH: ./src/main/resources/dashboard.json
         # REMOVE the working-directory line entirely.
       run: |
+        echo ${{ vars.GRAFANA_SERVER }}
+        echo ${{ vars.GRAFANA_STACK_ID }}
+        echo ${{ vars.GRAFANA_TOKEN }}
         if [ -f ${{ env.DASHBOARD_PATH }} ]; then
           echo "dashboard.json exists, deploying grafana dashboard."
-          grafanactl resources push dashboard \
-            --path ${{ env.DASHBOARD_PATH }} \
-            --stack-id ${{ env.GRAFANA_STACK_ID }}
+          grafanactl resources push dashboard --path ${{ env.DASHBOARD_PATH }} 
         else
           echo "ERROR: Dashboard JSON was not generated at ${{ env.DASHBOARD_PATH }}"
           exit 1
