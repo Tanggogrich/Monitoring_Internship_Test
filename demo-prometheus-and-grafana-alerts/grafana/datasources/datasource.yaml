@@ -50,5 +50,6 @@ providers:
     folder: 'Git Provisioned Dashboards'
     updateIntervalSeconds: 60
     disableDeletion: false
+    editable: true
     options:
-      path: C:\Users\vakht\IdeaProjects\JetBrains\Monitoring_Internship_Test\src\main\resources
+      path: /var/lib/grafana/dashboards

@@ -23,7 +23,7 @@ public class Main {
                 .tooltip(DashboardCursorSync.OFF)
                 .refresh("30s")
                 .time(new DashboardDashboardTimeBuilder()
-                        .from("now-60m")
+                        .from("now-30m")
                         .to("now"))
                 .timezone(TimeZoneBrowser)
                 .timepicker(new TimePickerBuilder()
@@ -43,10 +43,15 @@ public class Main {
                 .withPanel(avgOverTimeCPUUsageAsModifiedTimeSeries())
                 .build();
 
+        DashboardWrapper dashboardWrapper = new DashboardWrapper(
+                "dashboard.grafana.app/v1beta1",
+                "Dashboards",
+                new Metadata("my-dashboard"),
+                dashboard);
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            String prettyJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dashboard);
+            String prettyJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dashboardWrapper);
             try (FileWriter file = new FileWriter("src/main/resources/dashboard.json")) {
                 file.write(prettyJson);
             } catch (IOException e) {
