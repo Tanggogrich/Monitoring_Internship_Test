@@ -9,6 +9,18 @@ repositories {
     mavenCentral()
 }
 
+tasks.register('runGenerateDashboard', JavaExec) {
+    // 1. Set the main class to be executed
+    mainClass = 'monitoring.Main'
+
+    // 2. Set the classpath to include compiled classes and all dependencies
+    classpath = sourceSets.main.runtimeClasspath
+
+    // 3. Set the working directory for the Java process to the repository root.
+    // This makes it easy for Main.java to write to ./src/main/resources/dashboard.json.
+    workingDir = rootDir
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
