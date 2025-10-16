@@ -56,7 +56,6 @@ jobs:
           echo "dashboard.json exists, deploying grafana dashboard."
           grafanactl resources push dashboard \
             --path ${{ env.DASHBOARD_PATH }} \
-            --token ${{ env.GRAFANA_TOKEN }} \
             --stack-id ${{ env.GRAFANA_STACK_ID }}
         else
           echo "ERROR: Dashboard JSON was not generated at ${{ env.DASHBOARD_PATH }}"
