@@ -51,10 +51,10 @@ jobs:
         GRAFANA_SERVER: ${{ vars.GRAFANA_SERVER }}
         GRAFANA_STACK_ID: ${{ vars.GRAFANA_STACK_ID }}
         GRAFANA_TOKEN: ${{ secrets.GRAFANA_TOKEN }}
-        DASHBOARD_PATH: ./src/main/resources/dashboard.json
+        DASHBOARD_PATH: ./src/main/resources/
         # REMOVE the working-directory line entirely.
       run: |
-        if [ -f ${{ env.DASHBOARD_PATH }} ]; then
+        if [ -f ${{ env.DASHBOARD_PATH }}/dashboard.json ]; then
           echo "dashboard.json exists, deploying grafana dashboard."
           grafanactl resources push dashboard --path ${{ env.DASHBOARD_PATH }} 
         else
