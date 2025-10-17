@@ -54,7 +54,7 @@ jobs:
         DASHBOARD_PATH: ./src/main/resources/
         # REMOVE the working-directory line entirely.
       run: |
-        if [ -f ${{ env.DASHBOARD_PATH }}/dashboard.json ]; then
+        if [ -f ${{ env.DASHBOARD_PATH }}dashboard.json ]; then
           echo "dashboard.json exists, deploying grafana dashboard."
           grafanactl resources push dashboard --path ${{ env.DASHBOARD_PATH }} 
         else
