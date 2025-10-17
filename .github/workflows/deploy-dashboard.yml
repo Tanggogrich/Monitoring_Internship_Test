@@ -61,4 +61,4 @@ jobs:
           echo "ERROR: Dashboard JSON was not generated at ${{ env.DASHBOARD_PATH }}"
           exit 1
         fi
-      working-directory: ./src/main/resources/
+      working-directory: ${{ github.workspace }}
