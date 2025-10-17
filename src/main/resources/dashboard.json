@@ -1,6 +1,6 @@
 {
   "apiVersion" : "dashboard.grafana.app/v1beta1",
-  "kind" : "Dashboards",
+  "kind" : "dashboard",
   "metadata" : {
     "name" : "my-dashboard"
   },

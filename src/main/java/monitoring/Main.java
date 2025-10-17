@@ -45,7 +45,7 @@ public class Main {
 
         DashboardWrapper dashboardWrapper = new DashboardWrapper(
                 "dashboard.grafana.app/v1beta1",
-                "Dashboards",
+                "dashboard",
                 new Metadata("my-dashboard"),
                 dashboard);
 
