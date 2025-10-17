@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Dashboard dashboard = new DashboardBuilder("Grafana monitoring agent dashboard")
+        Dashboard dashboard = new DashboardBuilder("David's Grafana monitoring agent dashboard")
                 .uid("grafana-monitoring-agent")
                 .tags(List.of("generated", "grafana-foundation-sdk", "monitoring-agent"))
                 .editable()
