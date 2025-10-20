@@ -6,13 +6,13 @@
   },
   "spec" : {
     "uid" : "grafana-monitoring-agent",
-    "title" : "Grafana monitoring agent dashboard",
+    "title" : "David's Grafana monitoring agent dashboard",
     "tags" : [ "generated", "grafana-foundation-sdk", "monitoring-agent" ],
     "timezone" : "browser",
     "editable" : true,
     "graphTooltip" : 0,
     "time" : {
-      "from" : "now-30m",
+      "from" : "now-60m",
       "to" : "now"
     },
     "timepicker" : {
