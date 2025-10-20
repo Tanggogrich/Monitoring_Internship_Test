@@ -10,20 +10,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    services:
-      prometheus:
-        image: prom/prometheus:latest
-        ports:
-          - 9090:9090
-        # Mount the Prometheus config file (create this file first!)
-        volumes:
-          - ${{ github.workspace }}/prometheus.yml:/etc/prometheus/prometheus.yml
-
-      node-exporter:
-        image: prom/node-exporter:latest
-        ports:
-          - 9100:9100
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -66,7 +52,6 @@ jobs:
         GRAFANA_STACK_ID: ${{ vars.GRAFANA_STACK_ID }}
         GRAFANA_TOKEN: ${{ secrets.GRAFANA_TOKEN }}
         DASHBOARD_PATH: ./src/main/resources/dashboard.json
-        # REMOVE the working-directory line entirely.
       run: |
         if [ -f ${{ env.DASHBOARD_PATH }} ]; then
           echo "dashboard.json exists, deploying grafana dashboard."
@@ -75,4 +60,3 @@ jobs:
           echo "ERROR: Dashboard JSON was not generated at ${{ env.DASHBOARD_PATH }}"
           exit 1
         fi
-      working-directory: ${{ github.workspace }}
