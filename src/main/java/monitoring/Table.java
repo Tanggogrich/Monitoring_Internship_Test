@@ -13,7 +13,7 @@ public class Table {
                 .unit("short")
                 .withTarget(
                         tablePrometheusQuery(
-                                "avg_over_time(remote_write_status_total{job=~\"$job\"}[5m])",
+                                "rate(remote_write_status_total{job=~\"$job\"}[5m])",
                                 "{{job}} configured"
                         )
                                 .legendFormat("{{instance}} {{status}}")
