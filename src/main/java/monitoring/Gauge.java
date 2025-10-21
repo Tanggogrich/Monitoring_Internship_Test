@@ -12,6 +12,10 @@ import static monitoring.Common.datasourceRef;
 import static monitoring.Common.prometheusQuery;
 
 public class Gauge {
+    static String apiSuccessRateQuery =
+            "(sum(rate(remote_write_status_total{job=~\"$job\", status=\"200\"}[5m])) / " +
+                    "sum(rate(remote_write_status_total{job=~\"$job\"}[5m]))) * 100";
+
     static PanelBuilder gauge() {
         return new PanelBuilder()
                 .height(7)
@@ -32,11 +36,10 @@ public class Gauge {
                 .unit("short")
                 .withTarget(
                         prometheusQuery(
-                                "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+                                apiSuccessRateQuery,
                                 "{{job}} configured"
                         )
                                 .instant()
-                                .intervalFactor(1.0)
                                 .legendFormat("{{instance}} {{job}}")
                 );
     }

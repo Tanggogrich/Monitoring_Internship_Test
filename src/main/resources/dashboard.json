@@ -172,11 +172,10 @@
     }, {
       "type" : "gauge",
       "targets" : [ {
-        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+        "expr" : "(sum(rate(remote_write_status_total{job=~\"$job\", status=\"200\"}[5m])) / sum(rate(remote_write_status_total{job=~\"$job\"}[5m]))) * 100",
         "instant" : true,
         "range" : false,
         "legendFormat" : "{{instance}} {{job}}",
-        "intervalFactor" : 1.0,
         "refId" : "{{job}} configured"
       } ],
       "title" : "Gauge average cpu usage",
