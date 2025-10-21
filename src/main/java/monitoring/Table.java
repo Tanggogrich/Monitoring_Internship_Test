@@ -13,10 +13,10 @@ public class Table {
                 .unit("short")
                 .withTarget(
                         tablePrometheusQuery(
-                                "avg_over_time(cpu_usage{job=~\"$job\"}[5m])",
+                                "avg_over_time(remote_write_status_total{job=~\"$job\"}[5m])",
                                 "{{job}} configured"
                         )
-                                .legendFormat("{{instance}} {{job}}")
+                                .legendFormat("{{instance}} {{status}}")
                 );
     }
 }

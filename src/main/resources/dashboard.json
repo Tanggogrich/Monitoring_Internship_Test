@@ -88,11 +88,11 @@
     }, {
       "type" : "table",
       "targets" : [ {
-        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[5m])",
+        "expr" : "avg_over_time(remote_write_status_total{job=~\"$job\"}[5m])",
         "instant" : false,
         "range" : true,
         "format" : "table",
-        "legendFormat" : "{{instance}} {{job}}",
+        "legendFormat" : "{{instance}} {{status}}",
         "intervalFactor" : 2.0,
         "refId" : "{{job}} configured"
       } ],
