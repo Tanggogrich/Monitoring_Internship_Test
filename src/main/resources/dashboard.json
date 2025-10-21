@@ -173,8 +173,10 @@
       "type" : "gauge",
       "targets" : [ {
         "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+        "instant" : true,
+        "range" : false,
         "legendFormat" : "{{instance}} {{job}}",
-        "intervalFactor" : 2.0,
+        "intervalFactor" : 1.0,
         "refId" : "{{job}} configured"
       } ],
       "title" : "Gauge average cpu usage",
@@ -205,8 +207,20 @@
         "defaults" : {
           "unit" : "short",
           "thresholds" : {
-            "mode" : "percentage",
-            "steps" : [ ]
+            "mode" : "absolute",
+            "steps" : [ {
+              "value" : 70.0,
+              "color" : "red"
+            }, {
+              "value" : 80.0,
+              "color" : "yellow"
+            }, {
+              "value" : 90.0,
+              "color" : "green"
+            }, {
+              "value" : 100.0,
+              "color" : "yellow"
+            } ]
           }
         },
         "overrides" : [ ]

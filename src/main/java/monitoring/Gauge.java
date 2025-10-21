@@ -1,9 +1,12 @@
 package monitoring;
 
 import com.grafana.foundation.common.VizOrientation;
+import com.grafana.foundation.dashboard.Threshold;
 import com.grafana.foundation.dashboard.ThresholdsConfigBuilder;
 import com.grafana.foundation.dashboard.ThresholdsMode;
 import com.grafana.foundation.gauge.PanelBuilder;
+
+import java.util.List;
 
 import static monitoring.Common.datasourceRef;
 import static monitoring.Common.prometheusQuery;
@@ -16,7 +19,13 @@ public class Gauge {
                 .orientation(VizOrientation.AUTO)
                 .showThresholdMarkers(true)
                 .thresholds(new ThresholdsConfigBuilder()
-                        .mode(ThresholdsMode.PERCENTAGE))
+                        .mode(ThresholdsMode.ABSOLUTE)
+                        .steps(List.of(
+                                new Threshold(70.0, "red"),
+                                new Threshold(80.0, "yellow"),
+                                new Threshold(90.0, "green"),
+                                new Threshold(100.0, "yellow")
+                        )))
                 .title("Gauge average cpu usage")
                 .description("Average Over Time CPU Usage")
                 .datasource(datasourceRef())
@@ -26,7 +35,8 @@ public class Gauge {
                                 "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
                                 "{{job}} configured"
                         )
-                                .intervalFactor(2.0)
+                                .instant()
+                                .intervalFactor(1.0)
                                 .legendFormat("{{instance}} {{job}}")
                 );
     }
