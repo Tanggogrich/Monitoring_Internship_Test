@@ -28,10 +28,9 @@ public class TimeSeries {
                 .unit("short")
                 .withTarget(
                         prometheusQuery(
-                                "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+                                "avg_over_time(cpu_usage{job=~\"$job\"}[5m])",
                                 "{{job}} configured"
                         )
-                                .intervalFactor(2.0)
                                 .legendFormat("{{instance}} {{job}}")
                 );
     }
