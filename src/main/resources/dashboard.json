@@ -37,9 +37,8 @@
     }, {
       "type" : "timeseries",
       "targets" : [ {
-        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[5m])",
         "legendFormat" : "{{instance}} {{job}}",
-        "intervalFactor" : 2.0,
         "refId" : "{{job}} configured"
       } ],
       "title" : "Average Over Time CPU Usage",
@@ -89,7 +88,7 @@
     }, {
       "type" : "table",
       "targets" : [ {
-        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[5m])",
         "instant" : false,
         "range" : true,
         "format" : "table",
