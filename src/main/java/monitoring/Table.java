@@ -13,7 +13,7 @@ public class Table {
                 .unit("short")
                 .withTarget(
                         tablePrometheusQuery(
-                                "sum by (job, status)(rate(http_requests_total[5m]))",
+                                "http_requests_total(remote_write_status_total{job=~\"$job\"}[5m])",
                                 "{{job}} configured"
                         )
                                 .legendFormat("{{instance}} {{status}}")

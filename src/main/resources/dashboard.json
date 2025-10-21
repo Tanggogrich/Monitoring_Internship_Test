@@ -88,7 +88,7 @@
     }, {
       "type" : "table",
       "targets" : [ {
-        "expr" : "sum by (job, status)(rate(http_requests_total[5m]))",
+        "expr" : "http_requests_total(remote_write_status_total{job=~\"$job\"}[5m])",
         "instant" : false,
         "range" : true,
         "format" : "table",
@@ -170,7 +170,7 @@
     }, {
       "type" : "gauge",
       "targets" : [ {
-        "expr" : "(sum(rate(remote_write_status_total{job=~\"$job\", status=\"200\"}[5m])) / sum(rate(remote_write_status_total{job=~\"$job\"}[5m]))) * 100",
+        "expr" : "(sum(rate(http_requests_total(remote_write_status_total{job=~\"$job\", status=\"200\"}[5m]))) / sum(rate(http_requests_total(remote_write_status_total{job=~\"$job\"}[5m])))) * 100",
         "instant" : true,
         "range" : false,
         "legendFormat" : "{{instance}} {{job}}",
