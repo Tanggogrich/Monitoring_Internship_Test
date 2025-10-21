@@ -169,6 +169,48 @@
         },
         "overrides" : [ ]
       }
+    }, {
+      "type" : "gauge",
+      "targets" : [ {
+        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[$__interval])",
+        "legendFormat" : "{{instance}} {{job}}",
+        "intervalFactor" : 2.0,
+        "refId" : "{{job}} configured"
+      } ],
+      "title" : "Gauge average cpu usage",
+      "description" : "Average Over Time CPU Usage",
+      "transparent" : false,
+      "datasource" : {
+        "type" : "prometheus",
+        "uid" : "$prometheus_datasource"
+      },
+      "gridPos" : {
+        "h" : 7,
+        "w" : 12,
+        "x" : 12,
+        "y" : 10
+      },
+      "options" : {
+        "showThresholdLabels" : false,
+        "showThresholdMarkers" : true,
+        "sizing" : "auto",
+        "minVizWidth" : 75,
+        "reduceOptions" : {
+          "calcs" : [ ]
+        },
+        "minVizHeight" : 75,
+        "orientation" : "auto"
+      },
+      "fieldConfig" : {
+        "defaults" : {
+          "unit" : "short",
+          "thresholds" : {
+            "mode" : "percentage",
+            "steps" : [ ]
+          }
+        },
+        "overrides" : [ ]
+      }
     } ],
     "templating" : {
       "list" : [ {

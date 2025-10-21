@@ -9,6 +9,7 @@ import static com.grafana.foundation.common.Constants.TimeZoneBrowser;
 import static monitoring.Table.avgOverTimeCPUUsageAsTable;
 import static monitoring.TimeSeries.avgOverTimeCPUUsageAsModifiedTimeSeries;
 import static monitoring.TimeSeries.avgOverTimeCPUUsageAsTimeSeries;
+import static monitoring.Gauge.gauge;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class Main {
                 .withPanel(avgOverTimeCPUUsageAsTimeSeries())
                 .withPanel(avgOverTimeCPUUsageAsTable())
                 .withPanel(avgOverTimeCPUUsageAsModifiedTimeSeries())
+                .withPanel(gauge())
                 .build();
 
         DashboardWrapper dashboardWrapper = new DashboardWrapper(

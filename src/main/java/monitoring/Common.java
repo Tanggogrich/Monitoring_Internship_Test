@@ -6,7 +6,6 @@ import com.grafana.foundation.prometheus.DataqueryBuilder;
 import com.grafana.foundation.prometheus.PromQueryFormat;
 import com.grafana.foundation.timeseries.PanelBuilder;
 
-
 import java.util.List;
 
 public class Common {
