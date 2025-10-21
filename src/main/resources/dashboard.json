@@ -176,7 +176,7 @@
         "legendFormat" : "{{instance}} {{job}}",
         "refId" : "{{job}} configured"
       } ],
-      "title" : "Gauge average cpu usage",
+      "title" : "Remote Write API Success Rate (%)",
       "description" : "Average Over Time CPU Usage",
       "transparent" : false,
       "datasource" : {
@@ -202,21 +202,18 @@
       },
       "fieldConfig" : {
         "defaults" : {
-          "unit" : "short",
+          "unit" : "percent",
           "thresholds" : {
             "mode" : "absolute",
             "steps" : [ {
-              "value" : 70.0,
+              "value" : 99.0,
               "color" : "red"
             }, {
-              "value" : 80.0,
+              "value" : 99.9,
               "color" : "yellow"
-            }, {
-              "value" : 90.0,
-              "color" : "green"
             }, {
               "value" : 100.0,
-              "color" : "yellow"
+              "color" : "green"
             } ]
           }
         },

@@ -22,18 +22,20 @@ public class Gauge {
                 .span(12)
                 .orientation(VizOrientation.AUTO)
                 .showThresholdMarkers(true)
+                .unit("percent") // Use standard percentage unit
                 .thresholds(new ThresholdsConfigBuilder()
                         .mode(ThresholdsMode.ABSOLUTE)
                         .steps(List.of(
-                                new Threshold(70.0, "red"),
-                                new Threshold(80.0, "yellow"),
-                                new Threshold(90.0, "green"),
-                                new Threshold(100.0, "yellow")
+                                // 0% - 99.0% is RED (Bad)
+                                new Threshold(99.0, "red"),
+                                // 99.0% - 99.9% is YELLOW (Warning)
+                                new Threshold(99.9, "yellow"),
+                                // 99.9% - 100% is GREEN (Good)
+                                new Threshold(100.0, "green")
                         )))
-                .title("Gauge average cpu usage")
+                .title("Remote Write API Success Rate (%)")
                 .description("Average Over Time CPU Usage")
                 .datasource(datasourceRef())
-                .unit("short")
                 .withTarget(
                         prometheusQuery(
                                 apiSuccessRateQuery,
