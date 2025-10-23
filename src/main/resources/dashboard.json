@@ -88,7 +88,7 @@
     }, {
       "type" : "table",
       "targets" : [ {
-        "expr" : "http_requests_total(remote_write_status_total{job=~\"$job\"}[5m])",
+        "expr" : "http_requests_total(remote_write_status_total{job=~\"$job\"}[1m])",
         "instant" : false,
         "range" : true,
         "format" : "table",
@@ -118,7 +118,7 @@
     }, {
       "type" : "timeseries",
       "targets" : [ {
-        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[5m])",
+        "expr" : "avg_over_time(cpu_usage{job=~\"$job\"}[1m])",
         "legendFormat" : "{{instance}} {{job}}",
         "refId" : "{{job}} configured"
       } ],
@@ -170,7 +170,7 @@
     }, {
       "type" : "gauge",
       "targets" : [ {
-        "expr" : "(sum(rate(http_requests_total(remote_write_status_total{job=~\"$job\", status=\"200\"}[5m]))) / sum(rate(http_requests_total(remote_write_status_total{job=~\"$job\"}[5m])))) * 100",
+        "expr" : "(sum(rate(http_requests_total(remote_write_status_total{job=~\"$job\", status=\"200\"}[5m]))) / sum(rate(http_requests_total(remote_write_status_total{job=~\"$job\"}[1m])))) * 100",
         "instant" : true,
         "range" : false,
         "legendFormat" : "{{instance}} {{job}}",

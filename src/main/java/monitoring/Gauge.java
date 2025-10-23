@@ -14,7 +14,7 @@ import static monitoring.Common.prometheusQuery;
 public class Gauge {
     static String apiSuccessRateQuery =
             "(sum(rate(http_requests_total(remote_write_status_total{job=~\"$job\", status=\"200\"}[5m]))) / " +
-                    "sum(rate(http_requests_total(remote_write_status_total{job=~\"$job\"}[5m])))) * 100";
+                    "sum(rate(http_requests_total(remote_write_status_total{job=~\"$job\"}[1m])))) * 100";
 
     static PanelBuilder gauge() {
         return new PanelBuilder()
