@@ -88,7 +88,7 @@
     }, {
       "type" : "table",
       "targets" : [ {
-        "expr" : "http_requests_total(remote_write_status_total{job=~\"$job\"}[1m])",
+        "expr" : "sum by (status)(rate(remote_write_status_total{job=~\"$job\"}[1m]))",
         "instant" : false,
         "range" : true,
         "format" : "table",
