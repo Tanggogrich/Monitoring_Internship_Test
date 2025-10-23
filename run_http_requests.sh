@@ -17,7 +17,7 @@ do
   k6 run "$TEST_SCRIPT"
 
   #Generate a random delay between 30 and 35 seconds.
-  DELAY_DURATION=$((RANDOM % 6 + 30))
+  DELAY_DURATION=$((RANDOM % 6 + 60))
 
   sleep $DELAY_DURATION
 done
