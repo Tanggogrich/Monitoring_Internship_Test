@@ -31,14 +31,13 @@ jobs:
       run: |
         echo "Building and running Java class with Gradle..."
         
-        # 1. Make gradlew executable
+        # Make gradlew executable
         chmod +x gradlew
         
-        # 2. Execute the Main class using a Gradle task
-        # We assume you will add a Gradle task to run your Main class (see Fix 2).
+        # Execute the Main class using a Gradle task
+        # We assume you will add a Gradle task to run your Main class.
         ./gradlew runGenerateDashboard
         
-        # Verification (Optional but Recommended)
         if [ ! -f ./src/main/resources/dashboard.json ]; then
           echo "ERROR: Dashboard JSON was not generated at ./src/main/resources/dashboard.json"
           exit 1

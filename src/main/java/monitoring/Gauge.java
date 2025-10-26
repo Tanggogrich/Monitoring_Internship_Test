@@ -41,8 +41,7 @@ public class Gauge {
                                 apiSuccessRateQuery,
                                 "{{job}} configured"
                         )
-                                .instant()
-                                .legendFormat("{{instance}} {{job}}")
+                                .range()
                 );
     }
 

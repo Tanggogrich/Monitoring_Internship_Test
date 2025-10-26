@@ -171,9 +171,8 @@
       "type" : "gauge",
       "targets" : [ {
         "expr" : "(sum(rate(http_requests_total{job=~\"$job\", status=\"200\"}[1m]))/sum(rate(http_requests_total{job=~\"$job\"}[1m])) * 100",
-        "instant" : true,
-        "range" : false,
-        "legendFormat" : "{{instance}} {{job}}",
+        "instant" : false,
+        "range" : true,
         "refId" : "{{job}} configured"
       } ],
       "title" : "Remote Write API Success Rate (%)",

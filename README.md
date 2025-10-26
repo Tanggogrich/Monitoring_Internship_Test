@@ -66,4 +66,4 @@ Final actions:
 - Import JSON string in this dashboard
 
 ## Result
-![grafana_monitoring_screenshoot.png](src/main/resources/grafana_monitoring_screenshoot.png)
+![grafana_monitoring_screenshoot.png](./grafana_monitoring_screenshoot.png)
