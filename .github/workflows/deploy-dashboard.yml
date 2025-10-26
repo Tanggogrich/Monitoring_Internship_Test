@@ -31,11 +31,7 @@ jobs:
       run: |
         echo "Building and running Java class with Gradle..."
         
-        # Make gradlew executable
         chmod +x gradlew
-        
-        # Execute the Main class using a Gradle task
-        # We assume you will add a Gradle task to run your Main class.
         ./gradlew runGenerateDashboard
         
         if [ ! -f ./src/main/resources/dashboard.json ]; then

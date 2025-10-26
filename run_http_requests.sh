@@ -16,7 +16,7 @@ do
   echo "Running test script: $TEST_SCRIPT"
   k6 run "$TEST_SCRIPT"
 
-  #Generate a random delay between 30 and 35 seconds.
+  #Generate a random delay between 60 and 65 seconds.
   DELAY_DURATION=$((RANDOM % 6 + 60))
 
   sleep $DELAY_DURATION
